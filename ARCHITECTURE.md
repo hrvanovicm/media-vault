@@ -714,8 +714,9 @@ Deployment shape (docker-compose / k8s):
 
 The board is the source of truth for work. It contains **76 items: 8 epics + 68 tasks**. Every
 item has an **Estimate** in senior days (tasks only; epics roll up in their body), a **Size**
-(XS–XL), a **Priority** (P0 foundation, P1 Release 1, P2 later), a **Kind**, and a numeric key
-(`E1.1`, `E1.2`, …) that also defines the order. Tasks are sub-issues of their epic.
+(XS–XL), a **Priority** (P0 foundation, P1 Release 1, P2 later), a **Kind**, a numeric key
+(`E1.1`, `E1.2`, …) and an **Order** number (1–76). Tasks are sub-issues of their epic. Sort by
+**Order** ascending to get the exact build sequence; the manual card order matches it.
 
 - **Ready — Release 1 (43 items: epics E1–E4 + 39 tasks).** Work the next numbered Task.
 - **Backlog — Releases 2+ (33 items: epics E5–E8 + 29 tasks).** Closed for work until E4.9 passes.
