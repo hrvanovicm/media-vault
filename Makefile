@@ -5,6 +5,10 @@ VERSION=0.0.1
 
 LDFLAGS := -X '$(MODULE_DIR)/internal/internal.Version=$(VERSION)'
 
+install:
+	@echo "Installing golangci-lint (v1.64.6)..."
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.6
+
 build:
 	@echo "Compiling for linux, windows and macOS..."
 	@mkdir -p $(BIN_DIR)

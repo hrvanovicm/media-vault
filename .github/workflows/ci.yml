@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  quality-and-build:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'vault/go.mod'
+          cache: true
+          cache-dependency-path: 'vault/go.sum'
+
+      - name: Run vet
+        run: make vet
+
+      - name: Run Lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.64.6
+          working-directory: vault
+          install-mode: goinstall
+
+      - name: Run tests
+        run: make test
+
+      - name: Run vulnerability audit (govulncheck)
+        uses: golang/govulncheck-action@v1
+        with:
+          go-version-file: 'vault/go.mod'
+          work-dir: './vault'
+          
+  build-binaries:
+    name: Build Binaries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'vault/go.mod'
+          cache: true
+          cache-dependency-path: 'vault/go.sum'
+
+      - name: Run build
+        run: make build

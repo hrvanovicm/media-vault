@@ -1,5 +1,7 @@
 # Media Vault
 
+[![CI](https://github.com/hrvanovicm/media-vault/actions/workflows/ci.yml/badge.svg)](https://github.com/hrvanovicm/media-vault/actions/workflows/ci.yml)
+
 **Self-hosted, on-premise storage & media engine that takes the pain out of file uploads.**
 
 Built for developers who are tired of re-inventing upload pipelines in every project, no more wiring up S3 buckets, writing resize logic etc.
